@@ -15,6 +15,9 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 if(APPLE)
+    # Default: build for current architecture only
+    # Pass -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" for Universal Binary
+
     set_source_files_properties(src/main.cpp PROPERTIES LANGUAGE OBJCXX)
 
     add_executable(audio_capture

@@ -42,7 +42,7 @@ jobs:
         name: audio_capture-windows-x64
         path: build/bin/Release/audio_capture.exe
 
-  build-macos:
+  build-macos-arm64:
     runs-on: macos-14
     steps:
     - name: Checkout code
@@ -51,7 +51,7 @@ jobs:
     - name: Configure CMake
       run: |
         mkdir build && cd build
-        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64 ..
 
     - name: Build Release
       run: |
@@ -62,10 +62,36 @@ jobs:
       run: |
         file build/bin/audio_capture
         ls -lh build/bin/audio_capture
-        build/bin/audio_capture --help 2>&1 || true
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: audio_capture-macos-arm64
+        path: build/bin/audio_capture
+
+  build-macos-x86_64:
+    runs-on: macos-13
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Configure CMake
+      run: |
+        mkdir build && cd build
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=x86_64 ..
+
+    - name: Build Release
+      run: |
+        cd build
+        make -j$(sysctl -n hw.ncpu)
+
+    - name: Verify binary
+      run: |
+        file build/bin/audio_capture
+        ls -lh build/bin/audio_capture
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: audio_capture-macos-x86_64
         path: build/bin/audio_capture
