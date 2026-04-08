@@ -3,13 +3,7 @@ name: Build Cross-Platform
 on:
   push:
     branches: [main, master, dev]
-    paths:
-      - 'src/**'
-      - 'CMakeLists.txt'
   pull_request:
-    paths:
-      - 'src/**'
-      - 'CMakeLists.txt'
   workflow_dispatch:
 
 jobs:
