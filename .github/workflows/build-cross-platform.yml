@@ -2,7 +2,7 @@ name: Build Cross-Platform
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, dev]
     paths:
       - 'src/**'
       - 'CMakeLists.txt'
