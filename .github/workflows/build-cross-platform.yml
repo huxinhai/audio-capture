@@ -36,11 +36,6 @@ jobs:
         cmake --build . --config Release --verbose
       shell: cmd
 
-    - name: UPX Compress
-      run: |
-        upx --best --lzma build\bin\Release\audio_capture.exe
-      shell: cmd
-
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
