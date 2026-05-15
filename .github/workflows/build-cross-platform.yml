@@ -110,9 +110,9 @@ jobs:
 
     - name: Prepare release files
       run: |
-        mv audio_capture-windows-x64/audio_capture.exe audio_capture-windows-x64.exe
-        mv audio_capture-macos-arm64/audio_capture audio_capture-macos-arm64
-        mv audio_capture-macos-x86_64/audio_capture audio_capture-macos-x86_64
+        cp audio_capture-windows-x64/audio_capture.exe ./audio_capture-windows-x64.exe
+        cp audio_capture-macos-arm64/audio_capture ./audio_capture-macos-arm64
+        cp audio_capture-macos-x86_64/audio_capture ./audio_capture-macos-x86_64
         chmod +x audio_capture-macos-arm64 audio_capture-macos-x86_64
 
     - name: Create Release
