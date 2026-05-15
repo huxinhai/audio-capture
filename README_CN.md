@@ -26,7 +26,7 @@
 
 ### Windows
 
-- **操作系统**: Windows Vista 或更高版本（推荐 Windows 10/11）
+- **操作系统**: Windows 10/11（已测试通过）
 - **编译器**: Visual Studio 2017+（推荐 2022）或任何支持 C++17 的 MSVC 编译器
 - **构建工具**: CMake 3.15+
 
