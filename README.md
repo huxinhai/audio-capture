@@ -26,7 +26,7 @@ A cross-platform system audio capture tool that records all audio currently play
 
 ### Windows
 
-- **OS**: Windows 10/11 (tested)
+- **OS**: Windows Vista or later (tested on Windows 10/11)
 - **Compiler**: Visual Studio 2017+ (2022 recommended) or any MSVC compiler with C++17 support
 - **Build Tools**: CMake 3.15+
 
