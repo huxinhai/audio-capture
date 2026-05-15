@@ -8,9 +8,12 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-windows:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -19,7 +22,7 @@ jobs:
       uses: lukka/get-cmake@latest
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v2
 
     - name: Install UPX
       run: choco install upx -y
@@ -107,12 +110,14 @@ jobs:
     steps:
     - name: Download all artifacts
       uses: actions/download-artifact@v4
+      with:
+        path: artifacts
 
     - name: Prepare release files
       run: |
-        cp audio_capture-windows-x64/audio_capture.exe ./audio_capture-windows-x64.exe
-        cp audio_capture-macos-arm64/audio_capture ./audio_capture-macos-arm64
-        cp audio_capture-macos-x86_64/audio_capture ./audio_capture-macos-x86_64
+        cp artifacts/audio_capture-windows-x64/audio_capture.exe ./audio_capture-windows-x64.exe
+        cp artifacts/audio_capture-macos-arm64/audio_capture ./audio_capture-macos-arm64
+        cp artifacts/audio_capture-macos-x86_64/audio_capture ./audio_capture-macos-x86_64
         chmod +x audio_capture-macos-arm64 audio_capture-macos-x86_64
 
     - name: Create Release
